@@ -1,11 +1,12 @@
 package Items;
 
+import Characters.Character;
 import UI.IUseable;
 
 /**
  * Sheet for creating an item
  */
-abstract class Item implements IUseable {
+public abstract class Item implements IUseable {
 
     int itemCountLeft;
 
@@ -30,7 +31,7 @@ abstract class Item implements IUseable {
     /**
      * Uses item
      */
-    public void use() {
+    public void use(Character ch) {
         System.out.println("In progress");
     }
 }

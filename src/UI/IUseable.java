@@ -25,6 +25,6 @@ public interface IUseable {
     /**
      * Abstract method - Uses item
      */
-    void use();
+    void use(Character ch);
 
 }

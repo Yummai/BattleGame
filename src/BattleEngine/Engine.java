@@ -1,18 +1,26 @@
 package BattleEngine;
 
 import Attacks.Attack;
+import Characters.Character;
+import Items.EffectsOverTime.Effects.Healing;
+import Items.EffectsOverTime.Effects.Poision;
+import Items.EffectsOverTime.Interafaces.EffectOverTime;
 
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Scanner;
+
 
 /**
  * Class simulating and handling a battle between two fighters
  */
 public class Engine {
-    private Characters.Character current_player;
-    private Characters.Character opponent;
+    private Character current_player;
+    private Character opponent;
     private int current_attack = 1;
-
     private final Scanner scanner = new Scanner(System.in);
+
+    public static LinkedList<EffectOverTime> effects = new LinkedList<>();
 
     /**
      * Constructor for battle between two players
@@ -24,7 +32,15 @@ public class Engine {
         this.current_player = fighter1;
         this.opponent = fighter2;
     }
-
+    public void makeEffects() {
+        effects.add(new Poision(current_player, 2, 3, 4));
+        /* Iterate through all effects and make them happen  */
+        Iterator<EffectOverTime> it = effects.iterator();
+        while (it.hasNext()) {
+            EffectOverTime e = it.next();
+            e.makeEffect();
+        }
+    }
     /**
      * Starts battle between two fighters
      *
@@ -36,6 +52,8 @@ public class Engine {
 
         /* While for battle until death */
         while (current_player.getHitpoints() > 0 && opponent.getHitpoints() > 0) {
+            makeEffects();
+
             System.out.println("<=-=-=-=-=>HP<=-=-=-=-=>");
             System.out.println(current_player.getName() + " (" + currentPlayerClass + ") HP: " + current_player.getHitpoints());
             System.out.println(opponent.getName() + " (" + opponentClass + ") HP: " + opponent.getHitpoints());

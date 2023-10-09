@@ -1,6 +1,7 @@
 import BattleEngine.Engine;
 import Characters.Mage;
 import Characters.Warrior;
+import Items.EffectsOverTime.Effects.Healing;
 import UI.Menu;
 
 import java.util.InputMismatchException;
